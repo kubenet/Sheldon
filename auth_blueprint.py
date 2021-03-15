@@ -26,7 +26,6 @@ def login():
         # выводим все документы из коллекции coll
         username = request.form.get('username')
         password = request.form.get('password')
-        type_sensor = request.form.get('type_sensor')
         # подсчет количества людей с именем Петр
         if posts.find_one({"username": username, "password": password}):
             return "<h2>AUTHORISATION SUCCESS!</h2>"
@@ -44,8 +43,8 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         devices = request.form.get('devices')
-        discription = request.form.get('discription')
-        
+        description = request.form.get('description')
+
         type_sensor = request.form.get('type_sensor')
         # подсчет количества людей с именем Петр
         if posts.count_documents({"username": username}) != 0:
@@ -59,7 +58,7 @@ def register():
                 'email': email,
                 'password': password,
                 'devices': devices,
-                'discription': discription
+                'description': description
             }
             result = posts.insert_one(post_data)
             print('One post: {0}'.format(result.inserted_id))
@@ -67,4 +66,3 @@ def register():
         return '<h1>Write to db</h1>'
     print('GET')
     return render_template('auth/register.html')
-

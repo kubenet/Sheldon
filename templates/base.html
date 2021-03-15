@@ -1,6 +1,6 @@
 <!doctype html>
+<html lang="en">
 <title>{% block title %}{% endblock %} - Flask</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
   <h1>Flask</h1>
   <ul>
@@ -13,12 +13,10 @@
     {% endif %}
   </ul>
 </nav>
-<section class="content">
-  <header>
+<header>
     {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
+</header>
+<body>
   {% block content %}{% endblock %}
-</section>
+</body>
+</html>
