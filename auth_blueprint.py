@@ -13,6 +13,12 @@ def index():
     return '<h1>Test Blueprint</h1>'
 
 
+@admin.route('/view')
+def view():
+    users = posts.find()
+    return render_template('auth/view.html', users=users)
+
+
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -35,7 +41,11 @@ def register():
         print('method: post')
         # выводим все документы из коллекции coll
         username = request.form.get('username')
+        email = request.form.get('email')
         password = request.form.get('password')
+        devices = request.form.get('devices')
+        discription = request.form.get('discription')
+        
         type_sensor = request.form.get('type_sensor')
         # подсчет количества людей с именем Петр
         if posts.count_documents({"username": username}) != 0:
@@ -46,8 +56,10 @@ def register():
             print(username, password, type_sensor)
             post_data = {
                 'username': username,
+                'email': email,
                 'password': password,
-                'type_sensor': type_sensor
+                'devices': devices,
+                'discription': discription
             }
             result = posts.insert_one(post_data)
             print('One post: {0}'.format(result.inserted_id))
@@ -55,3 +67,4 @@ def register():
         return '<h1>Write to db</h1>'
     print('GET')
     return render_template('auth/register.html')
+

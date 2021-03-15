@@ -4,12 +4,26 @@
   <h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
+
+<td>{{ user.username }}</td><td>{{ user.email }}</td><td>{{ user.password }}</td><td>{{ user.devices }}</td><td>{{ user.discription }}</td>   
+
 {% block content %}
   <form action="/admin/register" method="post">
     <label for="username">Username</label>
     <input name="username" id="username" required>
+    
+    <label for="email">Email</label>
+    <input name="email" id="email" required>
+    
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>
+    
+    <label for="devices">Devices</label>
+    <input name="devices" id="devices" required>
+    
+    <label for="discription">Discription</label>
+    <input name="discription" id="discription" required>    
+    
     <input type="submit" value="Register">
   </form>
 {% endblock %}

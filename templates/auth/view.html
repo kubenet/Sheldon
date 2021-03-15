@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}View{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>View information about all users</h2>
+<table>
+	<caption>View information about all users</caption>
+	<tr>
+    <th>username</th>
+    <th>email</th>
+    <th>password</th>
+    <th>devices</th>
+    <th>discription</th>
+   </tr>
+   {% for user in users %}
+   <tr>
+    	<td>{{ user.username }}</td><td>{{ user.email }}</td><td>{{ user.password }}</td><td>{{ user.devices }}</td><td>{{ user.discription }}</td>     
+  	</tr>
+  	{% endfor %}
+</table>  
+
+<!--  <form action="/admin/register" method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+  </form>
+-->
+
+
+{% endblock %}
