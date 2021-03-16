@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from pymongo import MongoClient
+from bson import ObjectId
 
 client = MongoClient('localhost', 27017)
 db = client.mybase
@@ -15,6 +16,15 @@ def index():
 
 @admin.route('/view')
 def view():
+    users = posts.find()
+    return render_template('auth/view.html', users=users)
+
+
+@admin.route('/delete_user/<user_id>')
+def delete_user(user_id):
+    print(posts.find_one({"_id": ObjectId(user_id)}))
+    posts.delete_one({"_id": ObjectId(user_id)})
+    print(user_id)
     users = posts.find()
     return render_template('auth/view.html', users=users)
 
