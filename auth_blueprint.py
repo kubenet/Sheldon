@@ -1,10 +1,6 @@
 from flask import Blueprint, render_template, request
-from pymongo import MongoClient
 from bson import ObjectId
-
-client = MongoClient('localhost', 27017)
-db = client.mybase
-posts = db.posts
+from mongo_init import posts
 
 admin = Blueprint('admin', __name__, static_folder='static', template_folder='templates')
 

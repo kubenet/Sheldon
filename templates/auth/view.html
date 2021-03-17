@@ -6,18 +6,23 @@
 
 {% block content %}
 <h2>View information about all users</h2>
-<table border="1">
+<table class="table table-striped">
     <caption>View information about all users</caption>
+     <thead>
     <tr>
-        <th>username</th>
-        <th>email</th>
-        <th>password</th>
-        <th>devices</th>
-        <th>description</th>
-        <th>Delete</th>
+        <th scope="col">#</th>
+        <th scope="col">username</th>
+        <th scope="col">email</th>
+        <th scope="col">password</th>
+        <th scope="col">devices</th>
+        <th scope="col">description</th>
+        <th scope="col">Delete</th>
     </tr>
+     </thead>
+    <tbody>
     {% for user in users %}
     <tr>
+        <th scope="row">{{loop.index}}</th>
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.password }}</td>
@@ -26,6 +31,7 @@
         <td><a href="{{url_for('admin.delete_user',user_id=user.get('_id')) }}" >Delete</a></td>
     </tr>
     {% endfor %}
+     </tbody>
 </table>
 
 <!--  <form action="/admin/register" method="post">
